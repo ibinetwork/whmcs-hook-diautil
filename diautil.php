@@ -1,5 +1,7 @@
 <?php
-//Desenvolvido por Rafael Tavares - Ibinetwork Informática Laravel DataBase
+// Usado como base - Semanal RED por WHMCS.RED
+// Desenvolvido por Rafael Tavares - Ibinetwork Informática 
+// Laravel DataBase
 use WHMCS\Database\Capsule;
 //Bloqueio de Acesso direto ao arquivo
 if(!defined("WHMCS")){ die("Acesso restrito!");
@@ -8,8 +10,8 @@ function proximoDiaUtil($data, $saida = 'Y-m-d') {
     //Pegando Ano
     $ano = date('Y');
     //Lista de feriados nacionais
-    $feriados = array(''.$ano.'-08-16', ''.$ano.'-01-25', ''.$ano.'-02-27', ''.$ano.'-02-28', ''.$ano.'-04-15', ''.$ano.'-04-21', ''.$ano.'-04-21', ''.$ano.'-05-01', ''.$ano.'-06-16', ''.$ano.'-07-09', ''.$ano.'-09-07', ''.$ano.'-10-12', 
-    ''.$ano.'-11-02', ''.$ano.'-11-15', ''.$ano.'-12-25', ''.$ano.'-08-11');
+    $feriados = array(''.$ano.'-01-01', ''.$ano.'-01-25', ''.$ano.'-02-27', ''.$ano.'-02-28', ''.$ano.'-04-15', ''.$ano.'-04-21', ''.$ano.'-04-21', ''.$ano.'-05-01', ''.$ano.'-06-16', ''.$ano.'-07-09', ''.$ano.'-09-07', ''.$ano.'-10-12', 
+    ''.$ano.'-11-02', ''.$ano.'-11-15', ''.$ano.'-12-25');
     
 	$i = 0; $diautil = date('Y-m-d', strtotime($data . ' +' . $i . ' Weekday')); while (in_array($diautil, $feriados)) { $i++; $diautil = date('Y-m-d', strtotime($data . ' +' . $i . ' Weekday'));
 		}
@@ -36,5 +38,5 @@ function dia_util($vars){
     }
 }
 //Acionando o hook
-add_hook('InvoiceCreationPreEmail',3,'dia_util');
+add_hook('InvoiceCreationPreEmail',1,'dia_util');
 ?>
